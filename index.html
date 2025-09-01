@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>My E-Shop | Home</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h1>🛒 My E-Shop</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="cart.html">Cart</a>
+            <a href="orders.html">My Orders</a>
+            <a href="login.html" id="auth-link">Login</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Welcome to My E-Shop!</h2>
+        <p>Find the best products at affordable prices. Start shopping today 🚀</p>
+        <a href="shop.html" class="btn">Start Shopping</a>
+
+        <!-- Featured Products Section -->
+        <section>
+            <h2>Featured Products</h2>
+            <div id="home-products" class="products-grid"></div>
+        </section>
+    </main>
+
+    <!-- Floating Cart Icon -->
+    <div class="cart-icon" onclick="window.location.href='cart.html'">
+        🛒 <span id="cart-count">0</span>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Check login state
+        const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        const authLink = document.getElementById("auth-link");
+
+        if (currentUser && authLink) {
+            authLink.textContent = `Logout (${currentUser.name})`;
+            authLink.href = "#";
+            authLink.onclick = function () {
+                logout();
+            };
+        }
+
+        // Render 6 featured products on the homepage
+        renderProducts("home-products", 6);
+    </script>
+</body>
+
+</html>

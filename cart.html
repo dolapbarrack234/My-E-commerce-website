@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cart - My E-Shop</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h1>🛒 My E-Shop</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="cart.html">Cart (<span id="cart-count">0</span>)</a>
+            <a href="orders.html">My Orders</a>
+            <a href="login.html" id="auth-link">Login</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Your Cart</h2>
+        <div id="cart-items"></div>
+        <h3>Total: $<span id="cart-total">0</span></h3>
+        <button onclick="checkout()">Checkout</button>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        // Handle user login/logout display
+        const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        const authLink = document.getElementById("auth-link");
+
+        if (currentUser && authLink) {
+            authLink.textContent = `Logout (${currentUser.name})`;
+            authLink.href = "#";
+            authLink.onclick = function () {
+                logout();
+            };
+        }
+    </script>
+</body>
+</html>
