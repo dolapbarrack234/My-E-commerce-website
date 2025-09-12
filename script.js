@@ -1,4 +1,3 @@
-// ========== CART FUNCTIONS ==========
 function addToCart(name, price) {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
     const existing = cart.find(item => item.name === name);
@@ -17,7 +16,7 @@ function addToCart(name, price) {
 function loadCart() {
     const cartItemsDiv = document.getElementById("cart-items");
     const cartTotalSpan = document.getElementById("cart-total");
-    if (!cartItemsDiv) return; // only run on cart page
+    if (!cartItemsDiv) return; 
 
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
     cartItemsDiv.innerHTML = "";
@@ -59,7 +58,7 @@ function checkout() {
         return;
     }
 
-    // ===== Save order history =====
+    
     let allOrders = JSON.parse(localStorage.getItem("orders")) || {};
     if (!allOrders[currentUser.email]) {
         allOrders[currentUser.email] = [];
@@ -75,7 +74,7 @@ function checkout() {
     loadCart();
 }
 
-// ========== AUTH FUNCTIONS ==========
+
 function signup(e) {
     e.preventDefault();
     const name = document.getElementById("signup-name").value;
@@ -128,12 +127,12 @@ function showLogin() {
     document.querySelector(".auth .form-container").style.display = "block";
 }
 
-// ========== ORDERS FUNCTIONS ==========
+
 function loadOrders() {
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
     const ordersList = document.getElementById("orders-list");
 
-    if (!ordersList) return; // only run on orders.html
+    if (!ordersList) return; 
 
     if (!currentUser) {
         ordersList.innerHTML = "<p>Please <a href='login.html'>login</a> to see your orders.</p>";
@@ -158,8 +157,8 @@ function loadOrders() {
     `).join("");
 }
 
-// ========== AUTO LOAD ==========
+
 window.onload = () => {
-    loadCart();   // auto load cart items if on cart.html
-    loadOrders(); // auto load orders if on orders.html
+    loadCart();  
+    loadOrders(); 
 };
